@@ -85,7 +85,7 @@ namespace VegaPowerPC
 
         private Chromosome[] EvalPower()
         {
-            var temp = population.OrderBy(c => c.powerValue).ToArray();
+            var temp = population.OrderByDescending(c => c.powerValue).ToArray();
             return temp;
         }
 

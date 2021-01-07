@@ -8,20 +8,31 @@ namespace VegaPowerPC
 {
     class Chromosome
     {
-        public UInt16[] genes = new UInt16[10];
+        static Random r = new Random();
+        public UInt16[] genes;
         public static UInt16[] geneMaxValues = { 16, 512, 512, 1, 3, 8, 8, 8, 8, 8 };
         public static UInt16[] geneMinValues = { 1, 1, 1, 0, 0, 1, 1, 1, 1, 1 };
         public float powerValue { get; set; }
         public float ipcValue { get; set; }
         public float score { get; set; }
+        public Chromosome()
+        {
+            genes = new UInt16[10];
+        }
+        
         public void GenerateRandom()
         {
-            Random r = new Random();
             for (int i = 0; i < genes.Count(); i++)
             {
-                genes[i] = (UInt16)r.Next(geneMinValues[i], geneMaxValues[i] + 1);
+                genes[i] = GetGeneRandomValue(i);
             }
         }
+
+        public UInt16 GetGeneRandomValue(int index)
+        {
+            return (UInt16)r.Next(geneMinValues[index], geneMaxValues[index] + 1);
+        }
+
         public UInt16 SuperScalarFactor { get { return genes[0]; } set { genes[0] = value; } }
         public UInt16 RenameSize { get { return genes[1]; } set { genes[1] = value; } }
         public UInt16 ReorderSize { get { return genes[2]; } set { genes[2] = value; } }

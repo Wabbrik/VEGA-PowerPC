@@ -38,6 +38,31 @@ namespace VegaPowerPC
             double xover = (double)numericUpDownCrossoverChance.Value;
             vega = new Vega(filePath, populationSize, maxIt, ipcW, powW, mutate, xover, "compress.tra", 8);
             vega.StartSimulation();
+            UIupdateSimulationResults();
+        }
+
+        private void UIupdateSimulationResults()
+        {
+            var best = vega.bestChromosome;
+            SuperScalarFactorLabel.Text += " : " + best.SuperScalarFactor;
+            RenameSizeLabel.Text += " : " + best.RenameSize;
+            ReorderSizeLabel.Text += " : " + best.ReorderSize;
+            if (best.SeparateDecodeDispatch == 1)
+            {
+                SeparateDecodeDispatchLabel.Text += " : true";
+            }
+            else
+            {
+                SeparateDecodeDispatchLabel.Text += " : false";
+            }
+            ReservationArchitectureLabel.Text += " : " + best.ReservationArchitecture;
+            ResStationsPerBufferLabel.Text += " : " + best.ResStationsPerBuffer;
+            IntegerExecutionUnitsLabel.Text += " : " + best.IntegerEU;
+            FloatingPointEULabel.Text += " : " + best.FloatingPointEU;
+            BranchEULabel.Text += " : " + best.BranchEU;
+            MemoryEULabel.Text += " : " + best.MemEU;
+            ipcLabel.Text += " : " + best.ipcValue;
+            powerLabel.Text += " : " + best.powerValue;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace VegaPowerPC
 
         Chromosome[] population;
         static Random rng = new Random();
-        Chromosome bestChromosome;
+        public Chromosome bestChromosome;
         int iterations;
         string psatSimLocation;
         int noEvolutionCount;
@@ -36,7 +36,7 @@ namespace VegaPowerPC
                 population[i] = new Chromosome();
             }
             this.iterations = iterations;
-            bestChromosome = null;
+            bestChromosome = new Chromosome();
             psatSimLocation = location;
             this.maxIterations = maxIterations;
             ipcWeight = ipcW;
@@ -50,9 +50,7 @@ namespace VegaPowerPC
             {
                 chromosome.GenerateRandom();
             }
-
             string xmlInputOutput = Environment.CurrentDirectory + @"\in.xml";
-
             xmlh = new XMLhelper(xmlInputOutput, xmlInputOutput, location, "-g -t ", numberOfProcesses, benchmark);
         }
 

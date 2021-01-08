@@ -15,7 +15,10 @@ namespace VegaPowerPC
 
         Chromosome[] population;
         static Random rng = new Random();
+        Chromosome bestChromosome;
+        int iterations;
         string psatSimLocation;
+        int noEvolutionCount;
         UInt32 maxIterations;
         UInt32 ipcWeight;
         UInt32 powerWeight;
@@ -24,7 +27,7 @@ namespace VegaPowerPC
         XMLhelper xmlh;
         string benchmark;
         int numberOfProcesses;
-        public Vega(string location, UInt32 popSize, UInt32 iterations, UInt32 ipcW, UInt32 powW, double mutate, double xover, string benchmark, int numberOfProcesses)
+        public Vega(string location, UInt32 popSize, UInt32 maxIterations, UInt32 ipcW, UInt32 powW, double mutate, double xover, string benchmark, int numberOfProcesses = 8, int noEvolutionCount = 3, int iterations = 0)
         {
             population = new Chromosome[popSize];
 
@@ -32,22 +35,23 @@ namespace VegaPowerPC
             {
                 population[i] = new Chromosome();
             }
-
+            this.iterations = iterations;
+            bestChromosome = null;
             psatSimLocation = location;
-            maxIterations = iterations;
+            this.maxIterations = maxIterations;
             ipcWeight = ipcW;
             powerWeight = powW;
             mutateChance = mutate;
             xoverChance = xover;
             this.benchmark = benchmark;
             this.numberOfProcesses = numberOfProcesses;
-
+            this.noEvolutionCount = noEvolutionCount;
             foreach (var chromosome in population)
             {
                 chromosome.GenerateRandom();
             }
 
-            string xmlInputOutput =Environment.CurrentDirectory + @"\in.xml";
+            string xmlInputOutput = Environment.CurrentDirectory + @"\in.xml";
 
             xmlh = new XMLhelper(xmlInputOutput, xmlInputOutput, location, "-g -t ", numberOfProcesses, benchmark);
         }
@@ -139,6 +143,21 @@ namespace VegaPowerPC
             return temp;
         }
 
+        private bool StopGa(int numberOfGenerationsWithoutImprovement)
+        {
+            return (numberOfGenerationsWithoutImprovement >= noEvolutionCount || iterations >= maxIterations) ? true : false;
+        }
+
+        private Chromosome maxChromosome(Chromosome x, Chromosome y)
+        {
+            return (x.score > y.score) ? x : y;
+        }
+
+        private void UpdateBestChromosome(Chromosome x, Chromosome y)
+        {
+            bestChromosome = maxChromosome(bestChromosome, maxChromosome(x, y));
+        }
+
         private void CombinePopulations()
         {
             var ipc = EvalIPC();
@@ -148,6 +167,9 @@ namespace VegaPowerPC
             {
                 population[i] = ipc[i];
                 population[i + populationHalfLength] = pow[i];
+                population[i].UpdateScore(ipcWeight, powerWeight);
+                population[i + populationHalfLength].UpdateScore(ipcWeight, powerWeight);
+                UpdateBestChromosome(population[i], population[i + populationHalfLength]);
             }
         }
 
@@ -166,6 +188,21 @@ namespace VegaPowerPC
                 ApplyGeneticOperators(i, i + 1);
             }
             OperatorShuffle();
+        }
+
+        public void StartSimulation()
+        {
+            int noImpctr = 0;
+            while (!StopGa(noImpctr))
+            {
+                GenerateXML();
+                Simulate();
+                UpdatePopulationIpcAndPower();
+                var tempChromosome = bestChromosome;
+                GenerateNewPopulation();
+                if (tempChromosome == bestChromosome) noImpctr++;
+                iterations += 1;
+            }
         }
     }
 }

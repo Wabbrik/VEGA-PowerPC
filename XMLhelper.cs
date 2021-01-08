@@ -183,7 +183,7 @@ namespace VegaPowerPC
         private static void UpdateChromosomeWithAttribute(Chromosome chromosome, XmlAttributeCollection attributes)
         {
             chromosome.ipcValue = (float)GetIpcAttribute(attributes); 
-            chromosome.powerValue = (float)GetPowerAttribute(attributes); 
+            chromosome.powerValue = (float)GetPowerAttribute(attributes);
         }
 
         private static double GetPowerAttribute(XmlAttributeCollection attributes)

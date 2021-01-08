@@ -21,6 +21,11 @@ namespace VegaPowerPC
             genes = new UInt16[10];
         }
 
+        public void UpdateScore(float ipcW, float powerW)
+        {
+            score = ipcW * ipcValue * ipcValue - powerValue * powerW;
+        }
+
         public void GenerateRandom()
         {
             for (int i = 0; i < genes.Count(); i++)

@@ -21,6 +21,51 @@ namespace VegaPowerPC
         UInt32 powerWeight;
         double mutateChance;
         double xoverChance;
+        XMLhelper xmlh;
+        string benchmark;
+        int numberOfProcesses;
+        public Vega(string location, UInt32 popSize, UInt32 iterations, UInt32 ipcW, UInt32 powW, double mutate, double xover, string benchmark, int numberOfProcesses)
+        {
+            population = new Chromosome[popSize];
+
+            for (int i = 0; i < popSize; i++)
+            {
+                population[i] = new Chromosome();
+            }
+
+            psatSimLocation = location;
+            maxIterations = iterations;
+            ipcWeight = ipcW;
+            powerWeight = powW;
+            mutateChance = mutate;
+            xoverChance = xover;
+            this.benchmark = benchmark;
+            this.numberOfProcesses = numberOfProcesses;
+
+            foreach (var chromosome in population)
+            {
+                chromosome.GenerateRandom();
+            }
+
+            string xmlInputOutput =Environment.CurrentDirectory + @"\in.xml";
+
+            xmlh = new XMLhelper(xmlInputOutput, xmlInputOutput, location, "-g -t ", numberOfProcesses, benchmark);
+        }
+
+        internal void UpdatePopulationIpcAndPower()
+        {
+            xmlh.UpdatePopulationIpcAndPower(population);
+        }
+
+        internal void Simulate()
+        {
+            xmlh.Simulate();
+        }
+
+        internal void GenerateXML()
+        {
+            xmlh.GenerateXML(population);
+        }
 
         private double RandVal()
         {
@@ -121,156 +166,6 @@ namespace VegaPowerPC
                 ApplyGeneticOperators(i, i + 1);
             }
             OperatorShuffle();
-        }
-
-        public Vega(string location, UInt32 popSize, UInt32 iterations, UInt32 ipcW, UInt32 powW, double mutate, double xover)
-        {
-            population = new Chromosome[popSize];
-
-            for (int i = 0; i < popSize; i++)
-            {
-                population[i] = new Chromosome();
-            }
-
-            psatSimLocation = location;
-            maxIterations = iterations;
-            ipcWeight = ipcW;
-            powerWeight = powW;
-            mutateChance = mutate;
-            xoverChance = xover;
-
-            foreach (var chromosome in population)
-            {
-                chromosome.GenerateRandom();
-            }
-        }
-
-
-        public void GenerateXML()
-        {
-            XmlWriter xmlWriter = XmlWriter.Create(psatSimLocation + @"\in.xml");
-            xmlWriter.WriteStartDocument();
-            xmlWriter.WriteStartElement("psatsim");
-            for (int i = 0; i < population.Length; i++)
-            {
-                Chromosome chromosome = population[i];
-                xmlWriter.WriteStartElement("config");
-                xmlWriter.WriteAttributeString("name", i.ToString());
-                xmlWriter.WriteStartElement("general");//general
-                xmlWriter.WriteAttributeString("superscalar", chromosome.SuperScalarFactor.ToString());
-                xmlWriter.WriteAttributeString("rename", chromosome.RenameSize.ToString());
-                xmlWriter.WriteAttributeString("reorder", chromosome.ReorderSize.ToString());
-
-                switch (chromosome.ReservationArchitecture)
-                {
-                    case 0:
-                        xmlWriter.WriteAttributeString("rsb_architecture", "distributed");
-                        break;
-                    case 1:
-                        xmlWriter.WriteAttributeString("rsb_architecture", "centralized");
-                        break;
-                    case 2:
-                        xmlWriter.WriteAttributeString("rsb_architecture", "hybrid");
-                        break;
-                    case 3:
-                        xmlWriter.WriteAttributeString("rsb_architecture", "hybrid");
-                        break;
-                }
-
-                xmlWriter.WriteAttributeString("rs_per_rsb", chromosome.ResStationsPerBuffer.ToString());
-                xmlWriter.WriteAttributeString("speculative", "true");
-                xmlWriter.WriteAttributeString("speculation_accuracy", "1.000");
-
-                if (chromosome.SeparateDecodeDispatch != 0)
-                {
-                    xmlWriter.WriteAttributeString("separate_dispatch", "true");
-                }
-                else
-                {
-                    xmlWriter.WriteAttributeString("separate_dispatch", "false");
-                }
-
-                xmlWriter.WriteAttributeString("seed", "0");
-                xmlWriter.WriteAttributeString("trace", "compress.tra");
-                xmlWriter.WriteAttributeString("output", "out.xml");
-                xmlWriter.WriteAttributeString("vdd", "2.2");
-                xmlWriter.WriteAttributeString("frequency", "600");
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteStartElement("execution");// execution
-                xmlWriter.WriteAttributeString("architecture", "standard");
-                xmlWriter.WriteAttributeString("integer", chromosome.IntegerEU.ToString());
-                xmlWriter.WriteAttributeString("floating", chromosome.FloatingPointEU.ToString());
-                xmlWriter.WriteAttributeString("branch", chromosome.BranchEU.ToString());
-                xmlWriter.WriteAttributeString("memory", chromosome.MemEU.ToString());
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteStartElement("memory");//memory
-                xmlWriter.WriteAttributeString("architecture", "l2");
-                xmlWriter.WriteStartElement("l1_code");
-                xmlWriter.WriteAttributeString("hitrate", "1.000");
-                xmlWriter.WriteAttributeString("latency", "0");
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteStartElement("l1_data");
-                xmlWriter.WriteAttributeString("hitrate", "1.000");
-                xmlWriter.WriteAttributeString("latency", "0");
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteStartElement("l2");
-                xmlWriter.WriteAttributeString("hitrate", "1.000");
-                xmlWriter.WriteAttributeString("latency", "0");
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteStartElement("system");
-                xmlWriter.WriteAttributeString("latency", "0");
-                xmlWriter.WriteEndElement();
-                xmlWriter.WriteEndElement();// /memory
-                xmlWriter.WriteEndElement();// /config
-            }
-            xmlWriter.WriteEndElement();// /psatsim
-            xmlWriter.Close();
-        }
-
-        public void UpdatePopulationIpcAndPower()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(psatSimLocation + @"\in.xml");
-            XmlNodeList nodeList = doc.SelectNodes("/psatsim_results/variation");
-
-            foreach (XmlNode node in nodeList)//pt fiecare variation
-            {
-                XmlElement xmlElement = (XmlElement)node;
-                int configNumber = Convert.ToInt32(xmlElement.GetElementsByTagName("configuration")[0]);
-
-                foreach (XmlNode child in node.ChildNodes)
-                {
-                    if (child.Name == "general")
-                    {
-                        var attributes = child.Attributes;
-                        var ipc = Convert.ToDouble(attributes.GetNamedItem("ipc").Value);
-                        var power = Convert.ToDouble(attributes.GetNamedItem("power").Value);
-                        population[configNumber].ipcValue = (float)ipc;
-                        population[configNumber].powerValue = (float)power;
-                    }
-                }
-            }
-        }
-
-        public void Simulate()
-        {
-            Process process = new Process();
-            process.StartInfo.FileName = @"D:\Facultate\Anul 4\Simulare\proiect(VEGA)\PSATSim_INSTALLED\psatsim_con.exe";
-            process.StartInfo.WorkingDirectory = @"D:\Facultate\Anul 4\Simulare\proiect(VEGA)\PSATSim_INSTALLED\";
-            string inputFilePath = psatSimLocation + @"\in.xml";
-            string outputFilePath = psatSimLocation + @"\in.xml";
-            process.StartInfo.Arguments = inputFilePath + " " + outputFilePath + " -cg -t 8";
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
-            process.StartInfo.UseShellExecute = false;
-            try
-            {
-                bool x = process.Start();
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            process.WaitForExit();// Waits here for the process to exit.
         }
     }
 }

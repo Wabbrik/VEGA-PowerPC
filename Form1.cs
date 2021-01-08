@@ -36,7 +36,7 @@ namespace VegaPowerPC
             UInt32 powW = (uint)numericUpDownPowerWeight.Value;
             double mutate = (double)numericUpDownMutationChance.Value;
             double xover = (double)numericUpDownCrossoverChance.Value;
-            vega = new Vega(filePath, populationSize, maxIt, ipcW, powW, mutate, xover);
+            vega = new Vega(filePath, populationSize, maxIt, ipcW, powW, mutate, xover, "compress.tra", 8);
             vega.GenerateXML();
             vega.Simulate();
             vega.UpdatePopulationIpcAndPower();

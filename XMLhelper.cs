@@ -179,21 +179,23 @@ namespace VegaPowerPC
                 }
             }
         }
-
+       
         private static void UpdateChromosomeWithAttribute(Chromosome chromosome, XmlAttributeCollection attributes)
         {
-            chromosome.ipcValue = (float)GetIpcAttribute(attributes); 
-            chromosome.powerValue = (float)GetPowerAttribute(attributes);
+            chromosome.ipcValue = GetIpcAttribute(attributes); 
+            chromosome.powerValue = GetPowerAttribute(attributes);
         }
 
         private static double GetPowerAttribute(XmlAttributeCollection attributes)
         {
-            return Convert.ToDouble(attributes.GetNamedItem("power").Value);
+            char systemSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator[0];
+            return Convert.ToDouble((attributes.GetNamedItem("power").Value).Replace(".", systemSeparator.ToString()).Replace(",", systemSeparator.ToString()));
         }
 
         private static double GetIpcAttribute(XmlAttributeCollection attributes)
         {
-            return Convert.ToDouble(attributes.GetNamedItem("ipc").Value);
+            char systemSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator[0];
+            return Convert.ToDouble( (attributes.GetNamedItem("ipc").Value).Replace(".", systemSeparator.ToString()).Replace(",", systemSeparator.ToString()));  
         }
 
         private string getProcessFolder()

@@ -30,13 +30,13 @@ namespace VegaPowerPC
         public Vega(string location, UInt32 popSize, UInt32 maxIterations, UInt32 ipcW, UInt32 powW, double mutate, double xover, string benchmark, int numberOfProcesses = 8, int noEvolutionCount = 3, int iterations = 0)
         {
             population = new Chromosome[popSize];
-
+            bestChromosome = new Chromosome();
+            bestChromosome.score = -999999;
             for (int i = 0; i < popSize; i++)
             {
                 population[i] = new Chromosome();
             }
             this.iterations = iterations;
-            bestChromosome = new Chromosome();
             psatSimLocation = location;
             this.maxIterations = maxIterations;
             ipcWeight = ipcW;

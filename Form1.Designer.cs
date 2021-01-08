@@ -55,12 +55,12 @@
             this.BranchEULabel = new System.Windows.Forms.Label();
             this.MemoryEULabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.ReorderSizeLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.ipcLabel = new System.Windows.Forms.Label();
             this.powerLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.ReorderSizeLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfGenerations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPopulationSize)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,9 +72,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownIpcWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPowerWeight)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // numericUpDownNumberOfGenerations
@@ -206,7 +206,7 @@
             this.tableLayoutPanel2.Controls.Add(this.numericUpDownCrossoverChance, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelCrossoverChance, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.numericUpDownMutationChance, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 101);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 112);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -227,7 +227,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(254, 294);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(273, 328);
             this.tableLayoutPanel3.TabIndex = 20;
             // 
             // tableLayoutPanel4
@@ -239,7 +239,7 @@
             this.tableLayoutPanel4.Controls.Add(this.labelIpcWeight, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.numericUpDownIpcWeight, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.numericUpDownPowerWeight, 1, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 199);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 221);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -311,7 +311,7 @@
             // RenameSizeLabel
             // 
             this.RenameSizeLabel.AutoSize = true;
-            this.RenameSizeLabel.Location = new System.Drawing.Point(3, 21);
+            this.RenameSizeLabel.Location = new System.Drawing.Point(3, 23);
             this.RenameSizeLabel.Name = "RenameSizeLabel";
             this.RenameSizeLabel.Size = new System.Drawing.Size(95, 13);
             this.RenameSizeLabel.TabIndex = 23;
@@ -320,7 +320,7 @@
             // SeparateDecodeDispatchLabel
             // 
             this.SeparateDecodeDispatchLabel.AutoSize = true;
-            this.SeparateDecodeDispatchLabel.Location = new System.Drawing.Point(3, 63);
+            this.SeparateDecodeDispatchLabel.Location = new System.Drawing.Point(3, 69);
             this.SeparateDecodeDispatchLabel.Name = "SeparateDecodeDispatchLabel";
             this.SeparateDecodeDispatchLabel.Size = new System.Drawing.Size(87, 13);
             this.SeparateDecodeDispatchLabel.TabIndex = 25;
@@ -329,7 +329,7 @@
             // ReservationArchitectureLabel
             // 
             this.ReservationArchitectureLabel.AutoSize = true;
-            this.ReservationArchitectureLabel.Location = new System.Drawing.Point(3, 84);
+            this.ReservationArchitectureLabel.Location = new System.Drawing.Point(3, 92);
             this.ReservationArchitectureLabel.Name = "ReservationArchitectureLabel";
             this.ReservationArchitectureLabel.Size = new System.Drawing.Size(121, 13);
             this.ReservationArchitectureLabel.TabIndex = 26;
@@ -338,7 +338,7 @@
             // ResStationsPerBufferLabel
             // 
             this.ResStationsPerBufferLabel.AutoSize = true;
-            this.ResStationsPerBufferLabel.Location = new System.Drawing.Point(3, 105);
+            this.ResStationsPerBufferLabel.Location = new System.Drawing.Point(3, 115);
             this.ResStationsPerBufferLabel.Name = "ResStationsPerBufferLabel";
             this.ResStationsPerBufferLabel.Size = new System.Drawing.Size(134, 13);
             this.ResStationsPerBufferLabel.TabIndex = 27;
@@ -347,7 +347,7 @@
             // IntegerExecutionUnitsLabel
             // 
             this.IntegerExecutionUnitsLabel.AutoSize = true;
-            this.IntegerExecutionUnitsLabel.Location = new System.Drawing.Point(3, 126);
+            this.IntegerExecutionUnitsLabel.Location = new System.Drawing.Point(3, 138);
             this.IntegerExecutionUnitsLabel.Name = "IntegerExecutionUnitsLabel";
             this.IntegerExecutionUnitsLabel.Size = new System.Drawing.Size(55, 13);
             this.IntegerExecutionUnitsLabel.TabIndex = 28;
@@ -356,7 +356,7 @@
             // FloatingPointEULabel
             // 
             this.FloatingPointEULabel.AutoSize = true;
-            this.FloatingPointEULabel.Location = new System.Drawing.Point(3, 147);
+            this.FloatingPointEULabel.Location = new System.Drawing.Point(3, 161);
             this.FloatingPointEULabel.Name = "FloatingPointEULabel";
             this.FloatingPointEULabel.Size = new System.Drawing.Size(83, 13);
             this.FloatingPointEULabel.TabIndex = 29;
@@ -365,7 +365,7 @@
             // BranchEULabel
             // 
             this.BranchEULabel.AutoSize = true;
-            this.BranchEULabel.Location = new System.Drawing.Point(3, 168);
+            this.BranchEULabel.Location = new System.Drawing.Point(3, 184);
             this.BranchEULabel.Name = "BranchEULabel";
             this.BranchEULabel.Size = new System.Drawing.Size(56, 13);
             this.BranchEULabel.TabIndex = 30;
@@ -374,7 +374,7 @@
             // MemoryEULabel
             // 
             this.MemoryEULabel.AutoSize = true;
-            this.MemoryEULabel.Location = new System.Drawing.Point(3, 189);
+            this.MemoryEULabel.Location = new System.Drawing.Point(3, 207);
             this.MemoryEULabel.Name = "MemoryEULabel";
             this.MemoryEULabel.Size = new System.Drawing.Size(59, 13);
             this.MemoryEULabel.TabIndex = 31;
@@ -395,7 +395,7 @@
             this.tableLayoutPanel5.Controls.Add(this.ReservationArchitectureLabel, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.ResStationsPerBufferLabel, 0, 5);
             this.tableLayoutPanel5.Controls.Add(this.ReorderSizeLabel, 0, 2);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 59);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 65);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 11;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
@@ -410,8 +410,50 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(249, 232);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(268, 260);
             this.tableLayoutPanel5.TabIndex = 32;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Controls.Add(this.ipcLabel, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.powerLabel, 1, 0);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 233);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(262, 24);
+            this.tableLayoutPanel8.TabIndex = 36;
+            // 
+            // ipcLabel
+            // 
+            this.ipcLabel.AutoSize = true;
+            this.ipcLabel.Location = new System.Drawing.Point(3, 0);
+            this.ipcLabel.Name = "ipcLabel";
+            this.ipcLabel.Size = new System.Drawing.Size(21, 13);
+            this.ipcLabel.TabIndex = 33;
+            this.ipcLabel.Text = "ipc";
+            // 
+            // powerLabel
+            // 
+            this.powerLabel.AutoSize = true;
+            this.powerLabel.Location = new System.Drawing.Point(134, 0);
+            this.powerLabel.Name = "powerLabel";
+            this.powerLabel.Size = new System.Drawing.Size(36, 13);
+            this.powerLabel.TabIndex = 35;
+            this.powerLabel.Text = "power";
+            // 
+            // ReorderSizeLabel
+            // 
+            this.ReorderSizeLabel.AutoSize = true;
+            this.ReorderSizeLabel.Location = new System.Drawing.Point(3, 46);
+            this.ReorderSizeLabel.Name = "ReorderSizeLabel";
+            this.ReorderSizeLabel.Size = new System.Drawing.Size(65, 13);
+            this.ReorderSizeLabel.TabIndex = 32;
+            this.ReorderSizeLabel.Text = "ReorderSize";
             // 
             // tableLayoutPanel6
             // 
@@ -419,12 +461,12 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.buttonGetLocation, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(267, 3);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(282, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.14074F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.85926F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(255, 294);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(274, 328);
             this.tableLayoutPanel6.TabIndex = 33;
             // 
             // tableLayoutPanel7
@@ -439,56 +481,14 @@
             this.tableLayoutPanel7.RowCount = 1;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(529, 300);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(559, 334);
             this.tableLayoutPanel7.TabIndex = 34;
-            // 
-            // ReorderSizeLabel
-            // 
-            this.ReorderSizeLabel.AutoSize = true;
-            this.ReorderSizeLabel.Location = new System.Drawing.Point(3, 42);
-            this.ReorderSizeLabel.Name = "ReorderSizeLabel";
-            this.ReorderSizeLabel.Size = new System.Drawing.Size(65, 13);
-            this.ReorderSizeLabel.TabIndex = 32;
-            this.ReorderSizeLabel.Text = "ReorderSize";
-            // 
-            // ipcLabel
-            // 
-            this.ipcLabel.AutoSize = true;
-            this.ipcLabel.Location = new System.Drawing.Point(3, 0);
-            this.ipcLabel.Name = "ipcLabel";
-            this.ipcLabel.Size = new System.Drawing.Size(21, 13);
-            this.ipcLabel.TabIndex = 33;
-            this.ipcLabel.Text = "ipc";
-            // 
-            // powerLabel
-            // 
-            this.powerLabel.AutoSize = true;
-            this.powerLabel.Location = new System.Drawing.Point(124, 0);
-            this.powerLabel.Name = "powerLabel";
-            this.powerLabel.Size = new System.Drawing.Size(36, 13);
-            this.powerLabel.TabIndex = 35;
-            this.powerLabel.Text = "power";
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.ipcLabel, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.powerLabel, 1, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 213);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 1;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(243, 16);
-            this.tableLayoutPanel8.TabIndex = 36;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 313);
+            this.ClientSize = new System.Drawing.Size(569, 338);
             this.Controls.Add(this.tableLayoutPanel7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
@@ -508,10 +508,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPowerWeight)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

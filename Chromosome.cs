@@ -12,16 +12,16 @@ namespace VegaPowerPC
         public UInt16[] genes;
         public static UInt16[] geneMaxValues = { 16, 512, 512, 1, 3, 8, 8, 8, 8, 8 };
         public static UInt16[] geneMinValues = { 1, 1, 1, 0, 0, 1, 1, 1, 1, 1 };
-        public float powerValue { get; set; }
-        public float ipcValue { get; set; }
-        public float score { get; set; }
+        public double powerValue { get; set; }
+        public double ipcValue { get; set; }
+        public double score { get; set; }
 
         public Chromosome()
         {
             genes = new UInt16[10];
         }
 
-        public void UpdateScore(float ipcW, float powerW)
+        public void UpdateScore(double ipcW, double powerW)
         {
             score = ipcW * ipcValue * ipcValue - powerValue * powerW;
         }

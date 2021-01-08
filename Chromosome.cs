@@ -15,11 +15,12 @@ namespace VegaPowerPC
         public float powerValue { get; set; }
         public float ipcValue { get; set; }
         public float score { get; set; }
+
         public Chromosome()
         {
             genes = new UInt16[10];
         }
-        
+
         public void GenerateRandom()
         {
             for (int i = 0; i < genes.Count(); i++)
@@ -43,5 +44,5 @@ namespace VegaPowerPC
         public UInt16 FloatingPointEU { get { return genes[7]; } set { genes[7] = value; } }
         public UInt16 BranchEU { get { return genes[8]; } set { genes[8] = value; } }
         public UInt16 MemEU { get { return genes[9]; } set { genes[9] = value; } }
-}
     }
+}

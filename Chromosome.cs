@@ -23,7 +23,12 @@ namespace VegaPowerPC
 
         public void UpdateScore(double ipcW, double powerW)
         {
-            score = ipcW * ipcValue * ipcValue - powerValue * powerW;
+            score = ipcW * ipcValue + powerValue * powerW;
+            if (ipcValue > 3.5) score += 400;
+            if (ipcValue >= 4) score += 10000;
+            if (powerValue > 250) score -= 450;
+            if (powerValue > 500) score -= 10000;
+            if (ipcValue < 3) score -= 10000;
         }
 
         public void GenerateRandom()

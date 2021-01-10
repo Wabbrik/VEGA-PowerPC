@@ -12,7 +12,6 @@ namespace VegaPowerPC
 {
     class XMLhelper
     {
-
         string inputFile;
         string outputFile;
         string processLocation;
@@ -182,20 +181,22 @@ namespace VegaPowerPC
        
         private static void UpdateChromosomeWithAttribute(Chromosome chromosome, XmlAttributeCollection attributes)
         {
-            chromosome.ipcValue = GetIpcAttribute(attributes); 
             chromosome.powerValue = GetPowerAttribute(attributes);
+            chromosome.ipcValue = GetIpcAttribute(attributes);
         }
 
         private static double GetPowerAttribute(XmlAttributeCollection attributes)
         {
-            char systemSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator[0];
-            return Convert.ToDouble((attributes.GetNamedItem("power").Value).Replace(".", systemSeparator.ToString()).Replace(",", systemSeparator.ToString()));
+            double returnValue;
+            Double.TryParse(attributes.GetNamedItem("power").Value, out returnValue);
+            return returnValue;
         }
 
         private static double GetIpcAttribute(XmlAttributeCollection attributes)
         {
-            char systemSeparator = Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencyDecimalSeparator[0];
-            return Convert.ToDouble( (attributes.GetNamedItem("ipc").Value).Replace(".", systemSeparator.ToString()).Replace(",", systemSeparator.ToString()));  
+            double returnValue;
+            Double.TryParse(attributes.GetNamedItem("ipc").Value, out returnValue);
+            return returnValue;
         }
 
         private string getProcessFolder()

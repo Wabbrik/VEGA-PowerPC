@@ -207,8 +207,8 @@ namespace VegaPowerPC
         private ProcessStartInfo processInfoFactory()
         {
             var psi = new System.Diagnostics.ProcessStartInfo();
-            psi.FileName = processLocation + @"\psatsim_con.exe"; //@"D:\Facultate\Anul 4\Simulare\proiect(VEGA)\PSATSim_INSTALLED\psatsim_con.exe"
-            psi.WorkingDirectory = processLocation + @"\"; //@"D:\Facultate\Anul 4\Simulare\proiect(VEGA)\PSATSim_INSTALLED\";
+            psi.FileName = processLocation + @"\psatsim_con.exe";
+            psi.WorkingDirectory = processLocation + @"\";
             psi.Arguments = inputFile + " " + outputFile + " " +processParameters;
             psi.WindowStyle = ProcessWindowStyle.Maximized;
             psi.UseShellExecute = false;
